@@ -506,6 +506,14 @@ button:not(:disabled):hover{
 
     </style>
 
+
+    <script>
+        if (sessionStorage.getItem("login") !== "true") {
+            window.location.replace("login.html");
+        }
+    </script>
+
+
 </head>
 
 <body>
