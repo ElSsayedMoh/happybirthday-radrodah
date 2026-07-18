@@ -5,6 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <title>Unlock My Heart ❤️</title>
 
@@ -19,6 +20,11 @@
             padding:0;
             box-sizing:border-box;
             font-family:system-ui;;
+        }
+
+        html, body {
+            overscroll-behavior-y: none;
+            height: 100%;
         }
 
         body{
@@ -354,6 +360,25 @@
 
     }
 
+</script>
+
+<script>
+    let startY = 0;
+
+    document.addEventListener('touchstart', function (e) {
+        startY = e.touches[0].clientY;
+    }, { passive: true });
+
+
+    document.addEventListener('touchmove', function (e) {
+
+        let currentY = e.touches[0].clientY;
+
+        if (window.scrollY <= 0 && currentY > startY) {
+            e.preventDefault();
+        }
+
+    }, { passive: false });
 </script>
 
 </body>
