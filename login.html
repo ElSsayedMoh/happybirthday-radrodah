@@ -23,19 +23,19 @@
         }
 
         html, body {
-            overscroll-behavior-y: none;
+            overscroll-behavior-y: contain;
             height: 100%;
         }
 
         body{
 
-            height:100vh;
+            min-height:100vh;
 
             display:flex;
             justify-content:center;
             align-items:center;
 
-            overflow:hidden;
+            overflow-y:auto;
 
             background:linear-gradient(-45deg,#0f172a,#1e293b,#4c1d95,#0f172a);
             background-size:400% 400%;
@@ -362,24 +362,6 @@
 
 </script>
 
-<script>
-    let startY = 0;
-
-    document.addEventListener('touchstart', function (e) {
-        startY = e.touches[0].clientY;
-    }, { passive: true });
-
-
-    document.addEventListener('touchmove', function (e) {
-
-        let currentY = e.touches[0].clientY;
-
-        if (window.scrollY <= 0 && currentY > startY) {
-            e.preventDefault();
-        }
-
-    }, { passive: false });
-</script>
 
 </body>
 
