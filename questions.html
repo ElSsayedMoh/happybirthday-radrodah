@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Unlock My Heart ❤️</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:"Cairo",sans-serif;;
+        }
+
+        body{
+            margin:0;
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            direction:rtl;
+
+            overflow:hidden;
+
+            background:linear-gradient(-45deg,#0f172a,#1e293b,#4c1d95,#0f172a);
+            background-size:400% 400%;
+            animation:bg 15s infinite ease;
+        }
+
+        @keyframes bg{
+
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+
+        }
+
+        .card{
+
+            width:420px;
+            max-width:90%;
+
+            padding:20px;
+
+            border-radius:25px;
+
+            text-align:center;
+
+            background:rgba(255,255,255,.08);
+
+            backdrop-filter:blur(20px);
+
+            border:1px solid rgba(255,255,255,.15);
+
+            box-shadow:0 15px 50px rgba(0,0,0,.4);
+
+            color:#fff;
+
+            animation:fade .8s;
+
+        }
+
+        @keyframes fade{
+
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        .heart{
+
+            font-size:65px;
+            animation:pulse 1.4s infinite;
+
+        }
+
+        @keyframes pulse{
+
+            50%{
+                transform:scale(1.15);
+            }
+
+        }
+
+        h1{
+
+            margin-top:20px;
+            font-size:30px;
+
+        }
+
+        p{
+
+            margin:15px 0 35px;
+            color:#ddd;
+            line-height:28px;
+
+        }
+
+        input{
+
+            width:100%;
+
+            padding:17px;
+
+            border:none;
+            outline:none;
+
+            border-radius:15px;
+
+            background:rgba(255,255,255,.12);
+
+            color:#fff;
+
+            font-size:17px;
+
+            text-align:center;
+
+        }
+
+        input::placeholder{
+
+            color:#d4d4d4;
+
+        }
+
+        button{
+
+            margin-top:25px;
+
+            width:100%;
+
+            padding:17px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:#ff4d6d;
+
+            color:#fff;
+
+            font-size:18px;
+
+            cursor:pointer;
+
+            transition:.35s;
+
+        }
+
+        button:hover{
+
+            background:#ff758f;
+            transform:translateY(-3px);
+
+            box-shadow:0 10px 25px rgba(255,77,109,.45);
+
+        }
+
+        .error{
+
+            color:#ffb3c1;
+            margin-top:18px;
+            display:none;
+
+        }
+
+        .shake{
+
+            animation:shake .35s;
+
+        }
+
+        @keyframes shake{
+
+            20%{transform:translateX(-8px);}
+            40%{transform:translateX(8px);}
+            60%{transform:translateX(-8px);}
+            80%{transform:translateX(8px);}
+            100%{transform:translateX(0);}
+
+        }
+
+        .bubble{
+
+            position:absolute;
+
+            color:#ff6b81;
+
+            animation:float linear infinite;
+
+            opacity:.45;
+
+            user-select:none;
+
+        }
+
+        @keyframes float{
+
+            from{
+
+                transform:translateY(100vh) scale(.5);
+
+            }
+
+            to{
+
+                transform:translateY(-120px) scale(1.2);
+
+            }
+
+        }
+
+        .text-span {
+            display: block;
+            margin-top: 9px;
+            font-size: 18px;
+        }
+
+        .text-header {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #ffbc5e;
+        }
+
+
+        .ready-text{
+            margin-top:35px;
+            font-size:20px;
+            font-weight:700;
+            color:#fff;
+        }
+
+        .start-btn{
+
+            margin-top:20px;
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:16px;
+
+            background:#ff4d6d;
+
+            color:#fff;
+
+            font-size:18px;
+
+            font-weight:700;
+
+            cursor:pointer;
+
+            transition:.3s;
+
+        }
+
+        .start-btn:hover{
+
+            transform:translateY(-3px);
+
+            background:#ff6b88;
+
+            box-shadow:0 12px 25px rgba(255,77,109,.35);
+
+        }
+
+
+@keyframes bg{
+
+    0%,100%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+
+}
+
+.container{
+
+    width:100%;
+    max-width:430px;
+    padding:20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.counter{
+
+    text-align:center;
+    opacity:.8;
+    margin-bottom:20px;
+
+}
+
+.progress{
+
+    width:100%;
+    height:8px;
+
+    background:rgba(255,255,255,.15);
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+    margin-bottom:30px;
+
+}
+
+.progress-bar{
+
+    width:20%;
+    height:100%;
+    background:#ff4d6d;
+    border-radius:50px;
+    transition:.35s;
+
+}
+
+h2{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    line-height:1.7;
+
+}
+
+.answers{
+
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+
+}
+
+.answer{
+    padding:18px;
+    background:rgba(255,255,255,.08);
+    border:2px solid transparent;
+    border-radius:18px;
+    cursor:pointer;
+    transition:.3s;
+    font-size:18px;
+    user-select:none;
+}
+
+.answer:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.answer.active{
+
+    border-color:#ff4d6d;
+
+    background:rgba(255,77,109,.18);
+
+    transform:scale(1.03);
+
+    box-shadow:0 10px 25px rgba(255,77,109,.25);
+
+}
+
+button{
+
+    width:100%;
+
+    margin-top:30px;
+
+    border:none;
+
+    border-radius:15px;
+
+    padding:18px;
+
+    font-size:18px;
+
+    background:#ff4d6d;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:disabled{
+
+    opacity:.4;
+    cursor:not-allowed;
+
+}
+
+button:not(:disabled):hover{
+
+    transform:translateY(-2px);
+
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-top:30px;
+}
+
+.buttons button{
+    flex:1;
+}
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(15,23,42,.95);
+
+    z-index:9999;
+
+}
+
+.loading-card{
+
+    width:340px;
+    max-width:90%;
+
+    padding:35px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    color:#fff;
+
+}
+
+.loading-heart{
+
+    font-size:55px;
+
+    animation:pulse 1s infinite;
+
+}
+
+.loading{
+
+    margin-top:25px;
+
+    width:100%;
+    height:10px;
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.1);
+
+}
+
+.loading-bar{
+
+    width:0;
+
+    height:100%;
+
+    background:#ff4d6d;
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<div class="container">
+
+    <div class="card">
+
+        <div dir="ltr" class="counter">
+            ❤️ السؤال <span id="currentQuestion">1</span> من
+            <span id="totalQuestions">5</span>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
+
+        <h4 id="questionText" style="margin-bottom: 10px;"></h4>
+
+        <div class="answers">
+
+        </div>
+
+        <div class="buttons">
+
+            <button id="prev" style="display:none;">
+                → السابق
+            </button>
+
+            <button id="next" disabled>
+                التالي ←
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="loadingScreen">
+
+    <div class="loading-card">
+
+        <div class="loading-heart">❤️</div>
+
+        <h2>جارٍ التحقق من إجابات الرضروضة...</h2>
+
+        <div class="loading">
+
+            <div class="loading-bar"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    // ===============================
+// إنشاء القلوب
+// ===============================
+
+for (let i = 0; i < 25; i++) {
+
+    let size = Math.random() * 25 + 10;
+    let left = Math.random() * 100;
+    let duration = Math.random() * 8 + 7;
+    let delay = Math.random() * 8;
+
+    $("#hearts").append(`
+        <div class="bubble"
+            style="
+                left:${left}%;
+                font-size:${size}px;
+                animation-duration:${duration}s;
+                animation-delay:${delay}s;">
+            ❤
+        </div>
+    `);
+
+}
+
+// ===============================
+// البيانات
+// ===============================
+
+const questions = [
+    {
+        question: "في أي شهر وُلِدَت الرضروضة؟",
+        answers: [
+            { text: "يناير", correct: false },
+            { text: "يوليو", correct: false },
+            { text: "سبتمبر", correct: true },
+            { text: "كل ما سبق", correct: false }
+        ]
+    },
+    {
+        question: "فى أى شهر بدأت قصة حب الرضروضة",
+        answers: [
+            { text: "يناير", correct: false },
+            { text: "فبراير", correct: true },
+            { text: "يوم التلات", correct: false },
+            { text: "مش فاكره<br><small>يرجى العلم أن هذا الاختيار هيوديكي في ستين داهية</small>", correct: false }
+        ]
+    },
+    {
+        question: "بيقولى هاتى بوسه يا مصيبتى و يادى الحوسه الواد فاكرها .......... أديلو ولا أيه ",
+        answers: [
+            { text: "بيتزا", correct: false },
+            { text: "برجر", correct: false },
+            { text: "كوسه", correct: true },
+            { text: "مانجه عويسى", correct: false }
+        ]
+    },
+    {
+        question: "مين أول واحد قال بحبك؟ ❤️",
+        answers: [
+            { text: "أنا", correct: true },
+            { text: "إنتِ", correct: false },
+            { text: "الاتنين", correct: false },
+            { text: "ولا حد 😂", correct: false }
+        ]
+    },
+    {
+        question: "جاهزة تشوفي المفاجأة؟ 🎁",
+        answers: [
+            { text: "أكيد ❤️", correct: true },
+            { text: "طبعًا 😍", correct: false },
+            { text: "يلا بينا", correct: false },
+            { text: "متحمسة جدًا", correct: false }
+        ]
+    }
+];
+
+let currentQuestion = 0;
+let selectedAnswer = null;
+let userAnswers = [];
+
+loadQuestion();
+
+function loadQuestion() {
+
+    const q = questions[currentQuestion];
+
+    $("#currentQuestion").text(currentQuestion + 1);
+    $("#totalQuestions").text(questions.length);
+
+    $(".progress-bar").css(
+        "width",
+        ((currentQuestion + 1) / questions.length) * 100 + "%"
+    );
+
+    $("#questionText").html(q.question);
+
+    $(".answers").empty();
+
+    q.answers.forEach((answer, index) => {
+
+        $(".answers").append(`
+            <div class="answer" data-index="${index}">
+                ${answer.text}
+            </div>
+        `);
+
+    });
+
+    selectedAnswer = userAnswers[currentQuestion] ?? null;
+
+    if (selectedAnswer !== null) {
+
+        $(`.answer[data-index='${selectedAnswer}']`)
+            .addClass("active");
+
+        $("#next").prop("disabled", false);
+
+    } else {
+
+        $("#next").prop("disabled", true);
+
+    }
+
+    $("#prev").toggle(currentQuestion > 0);
+
+    if (currentQuestion === questions.length - 1) {
+
+        $("#next").text("شاهدي المفاجأة 🎁");
+
+    } else {
+
+        $("#next").text("التالي ←");
+
+    }
+
+}
+
+
+$(document).on("click", ".answer", function () {
+
+    $(".answer").removeClass("active");
+
+    $(this).addClass("active");
+
+    selectedAnswer = $(this).data("index");
+
+    $("#next").prop("disabled", false);
+
+});
+
+
+$("#next").on("click", function () {
+
+    if (selectedAnswer === null)
+        return;
+
+    userAnswers[currentQuestion] = selectedAnswer;
+
+    $(".card").fadeOut(250, function () {
+
+        currentQuestion++;
+
+        if (currentQuestion >= questions.length) {
+
+            finishQuiz();
+            return;
+
+        }
+
+        loadQuestion();
+
+        $(".card").fadeIn(250);
+
+    });
+
+});
+
+
+
+$("#prev").on("click", function () {
+
+    if (currentQuestion === 0)
+        return;
+
+    currentQuestion--;
+
+    $(".card").fadeOut(250, function () {
+
+        loadQuestion();
+
+        $(".card").fadeIn(250);
+
+    });
+
+});
+
+
+function finishQuiz() {
+
+    $("#loadingScreen").css("display", "flex");
+
+    $(".loading-bar").animate({
+
+        width: "100%"
+
+    }, 1500, function () {
+
+        window.location.href = "gift.html";
+
+    });
+
+}
+
+
+
+</script>
+
+</body>
+
+</html>

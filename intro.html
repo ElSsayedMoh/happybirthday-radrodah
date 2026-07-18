@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Unlock My Heart ❤️</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:system-ui;;
+        }
+
+        body{
+
+            height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            overflow:hidden;
+
+            background:linear-gradient(-45deg,#0f172a,#1e293b,#4c1d95,#0f172a);
+            background-size:400% 400%;
+            animation:bg 15s infinite ease;
+
+        }
+
+        @keyframes bg{
+
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+
+        }
+
+        .card{
+
+            width:420px;
+            max-width:90%;
+
+            padding:45px;
+
+            border-radius:25px;
+
+            text-align:center;
+
+            background:rgba(255,255,255,.08);
+
+            backdrop-filter:blur(20px);
+
+            border:1px solid rgba(255,255,255,.15);
+
+            box-shadow:0 15px 50px rgba(0,0,0,.4);
+
+            color:#fff;
+
+            animation:fade .8s;
+
+        }
+
+        @keyframes fade{
+
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+
+        }
+
+        .heart{
+
+            font-size:65px;
+            animation:pulse 1.4s infinite;
+
+        }
+
+        @keyframes pulse{
+
+            50%{
+                transform:scale(1.15);
+            }
+
+        }
+
+        h1{
+
+            margin-top:20px;
+            font-size:30px;
+
+        }
+
+        p{
+
+            margin:15px 0 35px;
+            color:#ddd;
+            line-height:28px;
+
+        }
+
+        input{
+
+            width:100%;
+
+            padding:17px;
+
+            border:none;
+            outline:none;
+
+            border-radius:15px;
+
+            background:rgba(255,255,255,.12);
+
+            color:#fff;
+
+            font-size:17px;
+
+            text-align:center;
+
+        }
+
+        input::placeholder{
+
+            color:#d4d4d4;
+
+        }
+
+        button{
+
+            margin-top:25px;
+
+            width:100%;
+
+            padding:17px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:#ff4d6d;
+
+            color:#fff;
+
+            font-size:18px;
+
+            cursor:pointer;
+
+            transition:.35s;
+
+        }
+
+        button:hover{
+
+            background:#ff758f;
+            transform:translateY(-3px);
+
+            box-shadow:0 10px 25px rgba(255,77,109,.45);
+
+        }
+
+        .error{
+
+            color:#ffb3c1;
+            margin-top:18px;
+            display:none;
+
+        }
+
+        .shake{
+
+            animation:shake .35s;
+
+        }
+
+        @keyframes shake{
+
+            20%{transform:translateX(-8px);}
+            40%{transform:translateX(8px);}
+            60%{transform:translateX(-8px);}
+            80%{transform:translateX(8px);}
+            100%{transform:translateX(0);}
+
+        }
+
+        .bubble{
+
+            position:absolute;
+
+            color:#ff6b81;
+
+            animation:float linear infinite;
+
+            opacity:.45;
+
+            user-select:none;
+
+        }
+
+        @keyframes float{
+
+            from{
+
+                transform:translateY(100vh) scale(.5);
+
+            }
+
+            to{
+
+                transform:translateY(-120px) scale(1.2);
+
+            }
+
+        }
+
+        .text-span {
+            display: block;
+            margin-top: 9px;
+            font-size: 18px;
+        }
+
+        .text-header {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #ffbc5e;
+        }
+
+
+        .ready-text{
+            margin-top:35px;
+            font-size:20px;
+            font-weight:700;
+            color:#fff;
+        }
+
+        .start-btn{
+
+            margin-top:20px;
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:16px;
+
+            background:#ff4d6d;
+
+            color:#fff;
+
+            font-size:18px;
+
+            font-weight:700;
+
+            cursor:pointer;
+
+            transition:.3s;
+
+        }
+
+        .start-btn:hover{
+
+            transform:translateY(-3px);
+
+            background:#ff6b88;
+
+            box-shadow:0 12px 25px rgba(255,77,109,.35);
+
+        }
+
+    </style>
+
+        <script>
+            if (sessionStorage.getItem("login") !== "true") {
+                window.location.replace("login.html");
+            }
+        </script>
+
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<div class="card">
+
+    <div class="text-header">👑 أهلاً بالست رضروضة هانم 👑</div>
+    <span style="font-size: 17px;">
+            بما إن علاقتنا بسم الله ما شاء الله من أيام الملك رمسيس الثانى،
+            فـ كنت حابب أسألك شوية أسئلة كدة لو مكانش عند حضرتك مانع
+    </span>
+
+    <div class="ready-text"> جاهزة يا حااااجة؟  </div>
+
+    <button id="start" class="start-btn"> جاهزة يا ابنى  </button>
+
+
+
+</div>
+
+<script>
+
+    // Hearts Background
+
+    for(let i=0;i<25;i++){
+
+        let size=Math.random()*25+10;
+
+        let left=Math.random()*100;
+
+        let duration=Math.random()*8+7;
+
+        let delay=Math.random()*8;
+
+        $("#hearts").append(`
+            <div class="bubble"
+                 style="
+                 left:${left}%;
+                 font-size:${size}px;
+                 animation-duration:${duration}s;
+                 animation-delay:${delay}s;">
+                 ❤
+            </div>
+        `);
+
+    }
+
+    $("#start").click(function () {
+
+        sessionStorage.setItem("intro", "true");
+
+        window.location.href = "questions.html";
+
+    });
+
+</script>
+
+</body>
+
+</html>
