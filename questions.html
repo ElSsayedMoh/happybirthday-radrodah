@@ -575,7 +575,7 @@ for (let i = 0; i < 25; i++) {
     let size = Math.random() * 25 + 10;
     let left = Math.random() * 100;
     let duration = Math.random() * 8 + 7;
-    let delay = Math.random() * 8;
+    let delay = -(Math.random() * 8);
 
     $("#hearts").append(`
         <div class="bubble"
