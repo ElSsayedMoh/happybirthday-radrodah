@@ -40,6 +40,8 @@
             background:linear-gradient(-45deg,#0f172a,#1e293b,#4c1d95,#0f172a);
             background-size:400% 400%;
             animation:bg 15s infinite ease;
+            position:relative;
+
 
         }
 
@@ -221,15 +223,11 @@
         @keyframes float{
 
             from{
-
-                transform:translateY(100vh) scale(.5);
-
+                transform:translateY(110vh) scale(.5);
             }
 
             to{
-
-                transform:translateY(-120px) scale(1.2);
-
+                transform:translateY(-150px) scale(1.2);
             }
 
         }
@@ -241,8 +239,11 @@
         }
 
         #hearts{
-            position:fixed;
-            inset:0;
+            position:absolute;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
             overflow:hidden;
             pointer-events:none;
         }
@@ -352,7 +353,7 @@
 
         let duration=Math.random()*8+7;
 
-        let delay=Math.random()*8;
+        let delay=-(Math.random()*8);
 
         $("#hearts").append(`
             <div class="bubble"
