@@ -273,9 +273,16 @@
     </p>
 
     <input
-            id="password"
-            type="password" autocomplete="new-password"
-            placeholder="أدخل كلمة المرور">
+        id="password"
+        type="password"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        enterkeyhint="done"
+        autocomplete="new-password"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="أدخل كلمة المرور">
 
     <button id="login">
 
@@ -294,7 +301,7 @@
 <script>
 
     // تاريخ الميلاد
-    const PASSWORD = "2072000";
+    const PASSWORD = "2072001";
 
     $("#login").click(function(){
 
