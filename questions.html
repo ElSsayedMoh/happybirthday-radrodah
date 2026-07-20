@@ -587,9 +587,6 @@ button:not(:disabled):hover{
 </div>
 
 <script>
-    // ===============================
-// إنشاء القلوب
-// ===============================
 
 for (let i = 0; i < 25; i++) {
 
@@ -616,13 +613,31 @@ for (let i = 0; i < 25; i++) {
 // ===============================
 
 const questions = [
+        {
+        question: "في أي يوم وُلِدَت الرضروضة؟",
+        answers: [
+            { text: "1", correct: false },
+            { text: "7", correct: false },
+            { text: "20", correct: true },
+            { text: "فى يوم وليلة 🎵", correct: false }
+        ]
+    },
     {
         question: "في أي شهر وُلِدَت الرضروضة؟",
         answers: [
             { text: "يناير", correct: false },
-            { text: "يوليو", correct: false },
-            { text: "سبتمبر", correct: true },
+            { text: "يوليو", correct: true },
+            { text: "سبتمبر", correct: false },
             { text: "كل ما سبق", correct: false }
+        ]
+    },
+    {
+        question: "فى أي عام تخرّجت الرضروضة",
+        answers: [
+            { text: "2030", correct: false },
+            { text: "2024", correct: false },
+            { text: "2025", correct: true },
+            { text: " قبل الميلاد 2000", correct: false }
         ]
     },
     {
@@ -635,30 +650,55 @@ const questions = [
         ]
     },
     {
-        question: "بيقولى هاتى بوسه يا مصيبتى و يادى الحوسه الواد فاكرها .......... أديلو ولا أيه ",
+        question: "في أي يوم قرينا فاتحة الرضروضة؟",
+        answers: [
+            { text: "15/03/2023", correct: false },
+            { text: "22/03/2025", correct: false },
+            { text: "30/09/2023", correct: true },
+            { text: "14/02/2025", correct: false }
+        ]
+    },
+    {
+        question: "في أي يوم اتشبكت الرضروضة؟",
+        answers: [
+            { text: "30/10/2024", correct: false },
+            { text: "01/01/2001", correct: false },
+            { text: "13/10/2023", correct: true },
+            { text: "17/07/2025", correct: false }
+        ]
+    },
+    {
+        question: "في أي يوم اتكتب كتاب الرضروضة؟",
+        answers: [
+            { text: "07/07/2007", correct: false },
+            { text: "23/03/2023", correct: false },
+            { text: "26/09/2025", correct: true },
+            { text: "30/09/2025", correct: false }
+        ]
+    },
+    {
+        question: "لو خيروكى بينى و بين ورق العنب هتختارى مين ؟",
+        answers: [
+            { text: "انت طبعاََ", correct: true },
+            { text: "ورق العنب", correct: false },
+            { text: "الاتنين مع بعض", correct: false },
+            { text: "الفلوس", correct: false }
+        ]
+    },
+    {
+        question: "شو حلو حبيبي شو حلو ...... شوفو ما أجمله",
+        answers: [
+            { text: "هالقمر", correct: true },
+            { text: "يالقمر", correct: false },
+        ]
+    },
+    {
+        question: "بيقولى هاتى بوسه يا مصيبتى و يادى الحوسه الواد فاكرها .......... أديلو ولا أيه.!؟ ",
         answers: [
             { text: "بيتزا", correct: false },
             { text: "برجر", correct: false },
             { text: "كوسه", correct: true },
             { text: "مانجه عويسى", correct: false }
-        ]
-    },
-    {
-        question: "مين أول واحد قال بحبك؟ ❤️",
-        answers: [
-            { text: "أنا", correct: true },
-            { text: "إنتِ", correct: false },
-            { text: "الاتنين", correct: false },
-            { text: "ولا حد 😂", correct: false }
-        ]
-    },
-    {
-        question: "جاهزة تشوفي المفاجأة؟ 🎁",
-        answers: [
-            { text: "أكيد ❤️", correct: true },
-            { text: "طبعًا 😍", correct: false },
-            { text: "يلا بينا", correct: false },
-            { text: "متحمسة جدًا", correct: false }
         ]
     }
 ];
@@ -714,13 +754,14 @@ function loadQuestion() {
 
     if (currentQuestion === questions.length - 1) {
 
-        $("#next").text("شاهدي المفاجأة 🎁");
+        $("#next").text("عرض النتيجة 🎉");
 
     } else {
 
         $("#next").text("التالي ←");
 
     }
+
 
 }
 
@@ -786,18 +827,36 @@ $("#prev").on("click", function () {
 
 function finishQuiz() {
 
-    $("#loadingScreen").css("display", "flex");
+    let score = 0;
 
-    $(".loading-bar").animate({
+    questions.forEach((question, index) => {
 
-        width: "100%"
+        const answerIndex = userAnswers[index];
 
-    }, 1500, function () {
-
-        window.location.href = "gift.html";
+        if (
+            answerIndex !== undefined &&
+            question.answers[answerIndex].correct
+        ) {
+            score++;
+        }
 
     });
 
+    $("#loadingScreen").css("display", "flex");
+
+        $(".loading-bar").animate({
+            width: "100%"
+        }, 1500, function () {
+
+            sessionStorage.removeItem("score");
+            sessionStorage.removeItem("total");
+
+            sessionStorage.setItem("score", score);
+            sessionStorage.setItem("total", questions.length);
+
+            window.location.href = "result.html";
+
+        });
 }
 
 

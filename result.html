@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>النتيجة ❤️</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:system-ui;
+        }
+
+        body{
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            background:linear-gradient(-45deg,#0f172a,#1e293b,#4c1d95,#0f172a);
+            background-size:400% 400%;
+            animation:bg 15s infinite ease;
+
+            color:#fff;
+
+        }
+
+        @keyframes bg{
+
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
+
+        }
+
+        .card{
+
+            width:430px;
+            max-width:92%;
+
+            padding:40px;
+
+            text-align:center;
+
+            border-radius:25px;
+
+            background:rgba(255,255,255,.08);
+
+            backdrop-filter:blur(20px);
+
+            border:1px solid rgba(255,255,255,.15);
+
+        }
+
+        h1{
+
+            font-size:32px;
+            margin-bottom:30px;
+
+        }
+
+        .score{
+
+            font-size:65px;
+            font-weight:bold;
+
+            color:#ff7b96;
+
+            margin:15px 0;
+
+        }
+
+        .percent{
+
+            font-size:30px;
+            margin-bottom:25px;
+
+        }
+
+        .message{
+
+            font-size:22px;
+            line-height:40px;
+            margin-bottom:35px;
+
+        }
+
+        button{
+
+            width:100%;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:#ff4d6d;
+
+            color:#fff;
+
+            font-size:20px;
+
+            cursor:pointer;
+
+        }
+
+        button:hover{
+
+            background:#ff7590;
+
+        }
+
+        .progress-circle{
+
+    position:relative;
+
+    width:220px;
+    height:220px;
+
+    margin:25px auto 40px;
+
+}
+
+.progress-circle svg{
+
+    transform:rotate(-90deg);
+
+}
+
+.progress-circle circle{
+
+    fill:none;
+    stroke-width:14;
+
+}
+
+.progress-circle .bg{
+
+    stroke:rgba(255,255,255,.15);
+
+}
+
+.progress{
+
+    stroke:#ff4d6d;
+
+    stroke-linecap:round;
+
+    stroke-dasharray:565;
+
+    stroke-dashoffset:565;
+
+    transition:stroke-dashoffset .05s linear;
+
+}
+
+.circle-text{
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+#percent{
+
+    font-size:48px;
+
+    font-weight:bold;
+
+    color:#ff7b96;
+
+}
+
+#score{
+
+    margin-top:8px;
+
+    font-size:22px;
+
+    color:#ddd;
+
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <h1>🎉 النتيجة 🎉</h1>
+
+        <div class="progress-circle">
+
+            <svg width="220" height="220">
+
+                <circle
+                    class="bg"
+                    cx="110"
+                    cy="110"
+                    r="90">
+                </circle>
+
+                <circle
+                    id="progress"
+                    class="progress"
+                    cx="110"
+                    cy="110"
+                    r="90">
+                </circle>
+
+            </svg>
+
+            <div class="circle-text">
+
+                <div id="percent">0%</div>
+
+                <small id="score">0 / 0</small>
+
+            </div>
+
+        </div>
+
+    <div class="message" id="message"></div>
+
+    <button id="next">
+         يلا ندخل نشوف فى أيه مستنيك هنا 😉
+    </button>
+
+</div>
+
+<script>
+
+const score = Number(sessionStorage.getItem("score"));
+const total = Number(sessionStorage.getItem("total"));
+
+const percentage = Math.round((score / total) * 100);
+
+$("#score").text(`${score} / ${total}`);
+
+const circle = document.getElementById("progress");
+
+const radius = 90;
+
+const circumference = 2 * Math.PI * radius;
+
+circle.style.strokeDasharray = circumference;
+
+circle.style.strokeDashoffset = circumference;
+
+let current = 0;
+
+const timer = setInterval(function(){
+
+    current++;
+
+    $("#percent").text(current + "%");
+
+    const offset = circumference - (current / 100) * circumference;
+
+    circle.style.strokeDashoffset = offset;
+
+    if(current >= percentage){
+
+        clearInterval(timer);
+
+        if(percentage >= 90){
+
+            $("#message").html("🌟 الله ينور يا معلم رضروضة ❤️");
+
+            circle.style.stroke = "#4ade80";
+
+        }else{
+
+            $("#message").html(" هعديهالك بس المرادى عشان عيد ميلادك 🎂❤️");
+
+            circle.style.stroke = "#f59e0b";
+
+        }
+
+    }
+
+},15);
+
+    $("#next").click(function(){
+
+        window.location.href="gift.html";
+
+    });
+
+</script>
+
+</body>
+
+</html>
